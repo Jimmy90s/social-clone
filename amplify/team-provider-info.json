@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-socialclone-dev-214052-authRole",
+      "UnauthRoleArn": "arn:aws:iam::664947382407:role/amplify-socialclone-dev-214052-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::664947382407:role/amplify-socialclone-dev-214052-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-socialclone-dev-214052-deployment",
+      "UnauthRoleName": "amplify-socialclone-dev-214052-unauthRole",
+      "StackName": "amplify-socialclone-dev-214052",
+      "StackId": "arn:aws:cloudformation:us-east-1:664947382407:stack/amplify-socialclone-dev-214052/60915240-5e82-11ee-b169-0e62783620b5",
+      "AmplifyAppId": "d1pyr1bihvjmwd"
+    }
+  }
+}
