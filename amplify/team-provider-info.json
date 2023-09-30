@@ -9,7 +9,38 @@
       "UnauthRoleName": "amplify-socialclone-dev-214052-unauthRole",
       "StackName": "amplify-socialclone-dev-214052",
       "StackId": "arn:aws:cloudformation:us-east-1:664947382407:stack/amplify-socialclone-dev-214052/60915240-5e82-11ee-b169-0e62783620b5",
-      "AmplifyAppId": "d1pyr1bihvjmwd"
+      "AmplifyAppId": "d1pyr1bihvjmwd",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-socialclone-dev-214052-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "socialclone22917174": {}
+      },
+      "function": {
+        "socialclone22917174DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-socialclone-dev-214052-deployment",
+          "s3Key": "amplify-builds/socialclone22917174DefineAuthChallenge-587532676674682b7732-build.zip"
+        },
+        "socialclone22917174CreateAuthChallenge": {
+          "deploymentBucketName": "amplify-socialclone-dev-214052-deployment",
+          "s3Key": "amplify-builds/socialclone22917174CreateAuthChallenge-39485536507861534b54-build.zip"
+        },
+        "socialclone22917174VerifyAuthChallengeResponse": {
+          "RECAPTCHASECRET": "",
+          "deploymentBucketName": "amplify-socialclone-dev-214052-deployment",
+          "s3Key": "amplify-builds/socialclone22917174VerifyAuthChallengeResponse-483069535244376d7455-build.zip"
+        },
+        "socialclone22917174CustomMessage": {
+          "REDIRECTURL": "",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-socialclone-dev-214052-deployment",
+          "s3Key": "amplify-builds/socialclone22917174CustomMessage-477a7138372f4a31707a-build.zip"
+        }
+      },
+      "api": {
+        "socialclone": {}
+      }
     }
   }
 }
