@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useUser } from "../context/AuthContext";
 import { CognitoUser } from "@aws-amplify/auth";
+import { useRouter } from "next/router";
 
 interface IFormInput {
   username: string;
@@ -18,6 +19,7 @@ export default function Signup() {
   const [open, setOpen] = useState(false);
   const [signUpError, setSignUpError] = useState<string>("");
   const [showCode, setShowCode] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -79,6 +81,11 @@ export default function Signup() {
       await Auth.confirmSignUp(username, code);
       const amplifyUser = await Auth.signIn(username, password);
       console.log("Success, signed in user: ", amplifyUser);
+      if (amplifyUser) {
+        router.push("/");
+      } else {
+        console.log("Something went wrong.");
+      }
     } catch (error) {
       console.log("error confirming sign up", error);
     }
@@ -89,14 +96,15 @@ export default function Signup() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid
         container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
         direction="column"
         alignContent="center"
         justifyContent="center"
-        spacing={2}
-        margin={3}
       >
         <Grid item>
           <TextField
+            style={{ marginTop: 16 }}
             error={errors.username ? true : false}
             helperText={errors.username ? errors.username.message : null}
             id="username"
