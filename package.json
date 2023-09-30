@@ -16,8 +16,9 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
-    "@next/font": "^13.5.3",
+    "autoprefixer": "^10.4.16",
     "next": "latest",
+    "postcss": "^8.4.31",
     "react": "latest",
     "react-dom": "latest",
     "tailwindcss": "^3.3.3"
