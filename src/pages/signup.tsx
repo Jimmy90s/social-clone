@@ -2,6 +2,9 @@
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Alert, Button, Grid, Snackbar, TextField } from "@mui/material";
 import { useState } from "react";
+import { Auth } from "aws-amplify";
+import { useUser } from "../context/AuthContext";
+import { CognitoUser } from "@aws-amplify/auth";
 
 interface IFormInput {
   username: string;
@@ -11,8 +14,10 @@ interface IFormInput {
 }
 
 export default function Signup() {
+  const { user, setUser } = useUser();
   const [open, setOpen] = useState(false);
   const [signUpError, setSignUpError] = useState<string>("");
+  const [showCode, setShowCode] = useState(false);
 
   const {
     register,
@@ -20,12 +25,14 @@ export default function Signup() {
     handleSubmit,
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log("form submitted ");
-    console.log(data);
-
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      signUpWithEmailAndPassword(data);
+      if (showCode) {
+        confirmSignUp(data);
+      } else {
+        await signUpWithEmailAndPassword(data);
+        setShowCode(true);
+      }
     } catch (err: any) {
       console.error(err);
       setSignUpError(err.message);
@@ -42,9 +49,10 @@ export default function Signup() {
 
     setOpen(false);
   };
-  console.log("Errors: ", errors);
 
-  async function signUpWithEmailAndPassword(data: IFormInput) {
+  async function signUpWithEmailAndPassword(
+    data: IFormInput
+  ): Promise<CognitoUser> {
     const { username, password, email } = data;
     try {
       const { user } = await Auth.signUp({
@@ -58,12 +66,25 @@ export default function Signup() {
           enabled: true,
         },
       });
-      console.log(user);
+      console.log("Signed up user: ", user);
+      return user;
     } catch (error) {
-      console.log("error signing up:", error);
+      throw error;
     }
   }
 
+  async function confirmSignUp(data: IFormInput) {
+    const { username, password, code } = data;
+    try {
+      await Auth.confirmSignUp(username, code);
+      const amplifyUser = await Auth.signIn(username, password);
+      console.log("Success, signed in user: ", amplifyUser);
+    } catch (error) {
+      console.log("error confirming sign up", error);
+    }
+  }
+
+  console.log("Hook value: ", user);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid
@@ -123,9 +144,33 @@ export default function Signup() {
             })}
           />
         </Grid>
+        {showCode && (
+          <Grid item>
+            <TextField
+              variant="outlined"
+              error={errors.username ? true : false}
+              helperText={errors.username ? errors.username.message : null}
+              id="code"
+              label="Varification Code"
+              type="text"
+              {...register("username", {
+                required: { value: true, message: "Please enter a username." },
+                minLength: {
+                  value: 6,
+                  message: "Incorrect varification code.",
+                },
+                maxLength: {
+                  value: 6,
+                  message: "Incorrect varification code.",
+                },
+              })}
+            />
+          </Grid>
+        )}
+
         <Grid marginTop={3}>
           <Button variant="contained" type="submit">
-            Sign Up
+            {showCode ? "Confirm Code" : "Sign Up"}
           </Button>
         </Grid>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
