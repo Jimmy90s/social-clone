@@ -1,4 +1,4 @@
-# Material UI - Next.js Pages Router example in TypeScript
+# Material UI - Next.js Pages Router in TypeScript
 
 ## How to use
 
