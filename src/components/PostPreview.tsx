@@ -1,5 +1,3 @@
-"use client";
-
 import { ButtonBase, Grid, IconButton, Paper, Typography } from "@mui/material";
 import React, { ReactElement, useState, useEffect } from "react";
 import {
