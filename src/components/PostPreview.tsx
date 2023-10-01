@@ -12,7 +12,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Image from "next/image";
 import { useRouter } from "next/router";
-// import formatDatePosted from "../lib/formatDatePosted";
+import formatDatePosted from "../lib/formatDatePosted";
 import { API, Auth, Storage } from "aws-amplify";
 // import { createVote, updateVote } from "../graphql/mutations";
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
@@ -57,20 +57,20 @@ export default function PostPreview({ post }: Props): ReactElement {
   //   }
   // }, [user]);
 
-  useEffect(() => {
-    async function getImageFromStorage() {
-      try {
-        const signedURL = await Storage.get(post.title); // get key from Storage.list
-        console.log("Found Image:", signedURL);
-        // @ts-ignore
-        setPostImage(signedURL);
-      } catch (error) {
-        console.log("No image found.");
-      }
-    }
+  // useEffect(() => {
+  //   async function getImageFromStorage() {
+  //     try {
+  //       const signedURL = await Storage.get(post.title); // get key from Storage.list
+  //       console.log("Found Image:", signedURL);
+  //       // @ts-ignore
+  //       setPostImage(signedURL);
+  //     } catch (error) {
+  //       console.log("No image found.");
+  //     }
+  //   }
 
-    getImageFromStorage();
-  }, []);
+  //   getImageFromStorage();
+  // }, []);
 
   // const addVote = async (voteType: string) => {
   //   if (existingVote && existingVote != voteType) {
@@ -126,7 +126,7 @@ export default function PostPreview({ post }: Props): ReactElement {
   //   }
   // };
 
-  // console.log(post);
+  console.log(post);
   // console.log("Upvotes:", upvotes);
   // console.log("Downvotes:", downvotes);
 
@@ -174,11 +174,11 @@ export default function PostPreview({ post }: Props): ReactElement {
               <Grid item>
                 <Typography variant="body1">
                   Posted by <b>{post.owner}</b>{" "}
-                  {/* {formatDatePosted(post.createdAt)} hours ago */}
+                  {formatDatePosted(post.createdAt)} hours ago
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography variant="h2">{post.title}</Typography>
+                <Typography variant="h3">{post.title}</Typography>
               </Grid>
               <Grid
                 item
@@ -188,18 +188,20 @@ export default function PostPreview({ post }: Props): ReactElement {
                   overflowX: "hidden",
                 }}
               >
-                {/* <Typography variant="body1">{post.contents}</Typography>
+                <Typography variant="body1">{post.contents}</Typography>
               </Grid>
-              {post.image && postImage && (
-                <Grid item>
-                  <Image
-                  src={postImage}
+              {/* {post.image && postImage && ( */}
+              <Grid item>
+                <Image
+                  src={"https://source.unsplash.com/random/980x540"}
+                  // src={postImage}
                   height={540}
                   width={980}
-                  layout="intrinsic" alt={""}                  />
-                </Grid>
-              )} */}
+                  layout="intrinsic"
+                  style={{ marginTop: 6 }}
+                />
               </Grid>
+              {/* )} */}
             </Grid>
           </ButtonBase>
         </Grid>

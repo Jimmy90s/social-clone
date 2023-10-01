@@ -28,19 +28,19 @@ export default function Home() {
 
     fetchPostsFromApi();
   }, []);
-  console.log({ posts });
+
   return (
     <Grid
       container
-      style={{ marginTop: 16 }}
-      spacing={{ xs: 2, md: 3 }}
+      style={{ marginTop: 16, padding: 24 }}
+      spacing={{ xs: 1, md: 3 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
       direction="column"
       alignContent="center"
       justifyContent="center"
     >
       {posts.map((post) => (
-        <div className="mt-6">
+        <div className="m-6 p-6 max-w-fit" key={post.id}>
           <PostPreview key={post.id} post={post} />
         </div>
       ))}
