@@ -68,7 +68,6 @@ export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
@@ -90,7 +89,6 @@ export const listComments = /* GraphQL */ `query ListComments(
       createdAt
       updatedAt
       postCommentsId
-      commentPostId
       owner
       __typename
     }
@@ -125,7 +123,6 @@ export const commentsByPostIDAndContent = /* GraphQL */ `query CommentsByPostIDA
       createdAt
       updatedAt
       postCommentsId
-      commentPostId
       owner
       __typename
     }

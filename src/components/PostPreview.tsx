@@ -190,19 +190,19 @@ export default function PostPreview({ post }: Props): ReactElement {
               >
                 <Typography variant="body1">{post.owner}</Typography>
               </Grid>
-              {/* {post.image && postImage && ( */}
-              <Grid item>
-                <Image
-                  src={"https://source.unsplash.com/random/980x540"}
-                  // src={postImage}
-                  height={540}
-                  width={980}
-                  layout="intrinsic"
-                  style={{ marginTop: 12 }}
-                  alt={""}
-                />
-              </Grid>
-              {/* )} */}
+              {post.image && postImage && (
+                <Grid item>
+                  <Image
+                    // src={"https://source.unsplash.com/random/980x540"}
+                    src={postImage}
+                    height={540}
+                    width={980}
+                    layout="intrinsic"
+                    style={{ marginTop: 12 }}
+                    alt={""}
+                  />
+                </Grid>
+              )}
             </Grid>
           </ButtonBase>
         </Grid>

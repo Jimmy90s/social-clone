@@ -110,7 +110,6 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
@@ -140,7 +139,6 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
@@ -170,7 +168,6 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }

@@ -110,7 +110,6 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
@@ -140,7 +139,6 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
@@ -170,7 +168,6 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
     createdAt
     updatedAt
     postCommentsId
-    commentPostId
     owner
     __typename
   }
