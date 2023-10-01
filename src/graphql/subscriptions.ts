@@ -15,6 +15,12 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost(
   onCreatePost(filter: $filter, owner: $owner) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -36,6 +42,12 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost(
   onUpdatePost(filter: $filter, owner: $owner) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -57,6 +69,12 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost(
   onDeletePost(filter: $filter, owner: $owner) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -81,6 +99,8 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -90,6 +110,7 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -108,6 +129,8 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -117,6 +140,7 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -135,6 +159,8 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -144,6 +170,7 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -151,4 +178,91 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment(
 ` as GeneratedSubscription<
   APITypes.OnDeleteCommentSubscriptionVariables,
   APITypes.OnDeleteCommentSubscription
+>;
+export const onCreateVote = /* GraphQL */ `subscription OnCreateVote(
+  $filter: ModelSubscriptionVoteFilterInput
+  $owner: String
+) {
+  onCreateVote(filter: $filter, owner: $owner) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateVoteSubscriptionVariables,
+  APITypes.OnCreateVoteSubscription
+>;
+export const onUpdateVote = /* GraphQL */ `subscription OnUpdateVote(
+  $filter: ModelSubscriptionVoteFilterInput
+  $owner: String
+) {
+  onUpdateVote(filter: $filter, owner: $owner) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateVoteSubscriptionVariables,
+  APITypes.OnUpdateVoteSubscription
+>;
+export const onDeleteVote = /* GraphQL */ `subscription OnDeleteVote(
+  $filter: ModelSubscriptionVoteFilterInput
+  $owner: String
+) {
+  onDeleteVote(filter: $filter, owner: $owner) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteVoteSubscriptionVariables,
+  APITypes.OnDeleteVoteSubscription
 >;

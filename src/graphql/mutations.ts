@@ -15,6 +15,12 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
   createPost(input: $input, condition: $condition) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -36,6 +42,12 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
   updatePost(input: $input, condition: $condition) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -57,6 +69,12 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
   deletePost(input: $input, condition: $condition) {
     id
     title
+    contents
+    image
+    votes {
+      nextToken
+      __typename
+    }
     comments {
       nextToken
       __typename
@@ -81,6 +99,8 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -90,6 +110,7 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -108,6 +129,8 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -117,6 +140,7 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -135,6 +159,8 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
     post {
       id
       title
+      contents
+      image
       createdAt
       updatedAt
       owner
@@ -144,6 +170,7 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
     createdAt
     updatedAt
     postCommentsId
+    commentPostId
     owner
     __typename
   }
@@ -151,4 +178,91 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
 ` as GeneratedMutation<
   APITypes.DeleteCommentMutationVariables,
   APITypes.DeleteCommentMutation
+>;
+export const createVote = /* GraphQL */ `mutation CreateVote(
+  $input: CreateVoteInput!
+  $condition: ModelVoteConditionInput
+) {
+  createVote(input: $input, condition: $condition) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateVoteMutationVariables,
+  APITypes.CreateVoteMutation
+>;
+export const updateVote = /* GraphQL */ `mutation UpdateVote(
+  $input: UpdateVoteInput!
+  $condition: ModelVoteConditionInput
+) {
+  updateVote(input: $input, condition: $condition) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateVoteMutationVariables,
+  APITypes.UpdateVoteMutation
+>;
+export const deleteVote = /* GraphQL */ `mutation DeleteVote(
+  $input: DeleteVoteInput!
+  $condition: ModelVoteConditionInput
+) {
+  deleteVote(input: $input, condition: $condition) {
+    id
+    vote
+    postID
+    post {
+      id
+      title
+      contents
+      image
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    createdAt
+    updatedAt
+    postVotesId
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteVoteMutationVariables,
+  APITypes.DeleteVoteMutation
 >;

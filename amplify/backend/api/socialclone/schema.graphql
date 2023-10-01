@@ -2,13 +2,19 @@ type Post
   @model
   @auth(
     rules: [
+      # Owner can perform any action on their own Post
       { allow: owner, operations: [create, update, delete, read] }
+      # Other signed in users can read everyones posts
       { allow: private, operations: [read] }
+      # Non-signed in users (guests) can read everyones posts as well.
       { allow: public, operations: [read] }
     ]
   ) {
   id: ID!
   title: String!
+  contents: String!
+  image: String
+  votes: [Vote!]! @hasMany
   comments: [Comment] @hasMany
 }
 
@@ -22,7 +28,21 @@ type Comment
     ]
   ) {
   id: ID!
-  postID: ID!
-  post: Post @belongsTo
+  postID: ID! @index(name: "byPost", sortKeyFields: ["content"])
+  post: Post @hasOne
   content: String!
+}
+type Vote
+  @model
+  @auth(
+    rules: [
+      { allow: owner, operations: [create, update, delete, read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  vote: String!
+  postID: ID! @index(name: "byVote", sortKeyFields: ["vote"])
+  post: Post @belongsTo
 }
