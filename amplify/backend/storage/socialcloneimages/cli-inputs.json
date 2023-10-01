@@ -1,0 +1,16 @@
+{
+  "resourceName": "socialcloneimages",
+  "policyUUID": "4984db8d",
+  "bucketName": "socialclonebde1c80fcf0e43adb84aef5f3c883413",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

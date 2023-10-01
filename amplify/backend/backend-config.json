@@ -214,5 +214,12 @@
         }
       ]
     }
+  },
+  "storage": {
+    "socialcloneimages": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
   }
 }

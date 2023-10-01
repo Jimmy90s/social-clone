@@ -46,5 +46,11 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     }
+  },
+  "storage": {
+    "socialcloneimages": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

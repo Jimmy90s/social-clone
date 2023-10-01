@@ -40,6 +40,9 @@
       },
       "api": {
         "socialclone": {}
+      },
+      "storage": {
+        "socialcloneimages": {}
       }
     }
   }

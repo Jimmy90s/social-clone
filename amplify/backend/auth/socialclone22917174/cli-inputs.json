@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "socialclone22917174_identitypool_22917174",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "social22917174",
     "userPoolName": "socialclone22917174_userpool_22917174",
     "autoVerifiedAttributes": [
@@ -55,6 +55,64 @@
     "serviceName": "Cognito",
     "verificationBucketName": "socialclone22917174verificationbucket",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "socialclone22917174DefineAuthChallenge",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "socialclone22917174CreateAuthChallenge",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "socialclone22917174VerifyAuthChallengeResponse",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      },
+      {
+        "category": "function",
+        "resourceName": "socialclone22917174CustomMessage",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "permissions": [],
+    "authTriggerConnections": [
+      "{\"triggerType\":\"DefineAuthChallenge\",\"lambdaFunctionName\":\"socialclone22917174DefineAuthChallenge\"}",
+      "{\"triggerType\":\"CreateAuthChallenge\",\"lambdaFunctionName\":\"socialclone22917174CreateAuthChallenge\"}",
+      "{\"triggerType\":\"VerifyAuthChallengeResponse\",\"lambdaFunctionName\":\"socialclone22917174VerifyAuthChallengeResponse\"}",
+      "{\"triggerType\":\"CustomMessage\",\"lambdaFunctionName\":\"socialclone22917174CustomMessage\"}"
+    ]
   }
 }

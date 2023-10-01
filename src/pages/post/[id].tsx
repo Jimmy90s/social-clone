@@ -94,6 +94,10 @@ export default function IndividualPost({ post }: Props): ReactElement {
         </Grid>
       </form>
 
+      {/* {post.comments?.items?.map((comment) => (
+        <PostComment comment={comment} />
+      ))} */}
+
       {/* TODO: Sort comments by createdDate */}
 
       {/* {comments

@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import ImageDropzone from "../components/ImageDropzone";
 import { API, Storage } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
+import uuid from "react-uuid";
 import { createPost } from "../graphql/mutations";
 import { CreatePostInput, CreatePostMutation } from "../API";
 import { useRouter } from "next/router";
@@ -35,7 +36,7 @@ export default function Create({}: Props): ReactElement {
     if (file) {
       // Send a request to upload to the S3 Bucket.
       try {
-        const imagePath = uuidv4();
+        const imagePath = uuid();
 
         await Storage.put(imagePath, file, {
           contentType: file.type, // contentType is optional
@@ -130,9 +131,11 @@ export default function Create({}: Props): ReactElement {
           </Grid>
 
           {/* Button to submit the form with those contents */}
-          <Button variant="contained" type="submit">
-            Create Post
-          </Button>
+          <Grid item>
+            <Button variant="contained" type="submit">
+              Create Post
+            </Button>
+          </Grid>
         </Grid>
       </form>
     </Container>
