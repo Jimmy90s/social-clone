@@ -188,7 +188,7 @@ export default function PostPreview({ post }: Props): ReactElement {
                   overflowX: "hidden",
                 }}
               >
-                <Typography variant="body1">{post.contents}</Typography>
+                {/* <Typography variant="body1">{post.contents}</Typography> */}
               </Grid>
               {/* {post.image && postImage && ( */}
               <Grid item>

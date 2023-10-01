@@ -39,11 +39,13 @@ export default function Home() {
       alignContent="center"
       justifyContent="center"
     >
-      {posts.map((post) => (
-        <div className="m-6 p-6 max-w-fit" key={post.id}>
-          <PostPreview key={post.id} post={post} />
-        </div>
-      ))}
+      {posts
+        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        .map((post) => (
+          <div className="m-6 p-6 max-w-fit" key={post.id}>
+            <PostPreview key={post.id} post={post} />
+          </div>
+        ))}
     </Grid>
   );
 }

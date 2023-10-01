@@ -1,5 +1,5 @@
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@mui/styles";
+import { createStyles, makeStyles } from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,8 +11,9 @@ import { Button, Menu, MenuItem, Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
 import { Auth } from "aws-amplify";
 import AddIcon from "@mui/icons-material/Add";
+import theme from "../theme";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       flexGrow: 1,
@@ -60,7 +61,7 @@ export default function Header() {
             <AppleIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Social Clone
+            Social Media Clone
           </Typography>
           {user && (
             <div>
