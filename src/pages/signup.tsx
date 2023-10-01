@@ -16,10 +16,10 @@ interface IFormInput {
 
 export default function Signup() {
   const { user, setUser } = useUser();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [signUpError, setSignUpError] = useState<string>("");
-  const [showCode, setShowCode] = useState(false);
-  const router = useRouter();
+  const [showCode, setShowCode] = useState<boolean>(false);
 
   const {
     register,
@@ -41,14 +41,11 @@ export default function Signup() {
       setOpen(true);
     }
   };
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
@@ -61,14 +58,10 @@ export default function Signup() {
         username,
         password,
         attributes: {
-          email, // optional
-        },
-        autoSignIn: {
-          // optional - enables auto sign in after user is confirmed
-          enabled: true,
+          email,
         },
       });
-      console.log("Signed up user: ", user);
+      console.log("Signed up a user:", user);
       return user;
     } catch (error) {
       throw error;
@@ -80,11 +73,11 @@ export default function Signup() {
     try {
       await Auth.confirmSignUp(username, code);
       const amplifyUser = await Auth.signIn(username, password);
-      console.log("Success, signed in user: ", amplifyUser);
+      console.log("Successs, singed in a user", amplifyUser);
       if (amplifyUser) {
-        router.push("/");
+        router.push(`/`);
       } else {
-        console.log("Something went wrong.");
+        throw new Error("Something went wrong :'(");
       }
     } catch (error) {
       console.log("error confirming sign up", error);
@@ -161,7 +154,7 @@ export default function Signup() {
               id="code"
               label="Varification Code"
               type="text"
-              {...register("username", {
+              {...register("code", {
                 required: { value: true, message: "Please enter a username." },
                 minLength: {
                   value: 6,

@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonBase, Grid, IconButton, Paper, Typography } from "@mui/material";
 import React, { ReactElement, useState, useEffect } from "react";
 import {
@@ -198,7 +200,8 @@ export default function PostPreview({ post }: Props): ReactElement {
                   height={540}
                   width={980}
                   layout="intrinsic"
-                  style={{ marginTop: 6 }}
+                  style={{ marginTop: 12 }}
+                  alt={""}
                 />
               </Grid>
               {/* )} */}
