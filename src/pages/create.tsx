@@ -4,7 +4,7 @@ import React, { ReactElement, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ImageDropzone from "../components/ImageDropzone";
 import { API, Storage } from "aws-amplify";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import uuid from "react-uuid";
 import { createPost } from "../graphql/mutations";
 import { CreatePostInput, CreatePostMutation } from "../API";

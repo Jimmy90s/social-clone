@@ -10,7 +10,9 @@ interface Props {
 export default function ImageDropzone({ file, setFile }: Props) {
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
-    accept: "image/*",
+    accept: {
+      "image/*": [".*"],
+    },
     onDrop: (acceptedFiles) => {
       setFile(acceptedFiles[0]);
     },
@@ -39,13 +41,7 @@ export default function ImageDropzone({ file, setFile }: Props) {
           </div>
         </section>
       ) : (
-        <Grid
-          container
-          alignItems="center"
-          justify="center"
-          direction="column"
-          spacing={1}
-        >
+        <Grid container alignItems="center" direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h6">Your Image:</Typography>
           </Grid>

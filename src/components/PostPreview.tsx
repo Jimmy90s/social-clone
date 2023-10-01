@@ -57,20 +57,20 @@ export default function PostPreview({ post }: Props): ReactElement {
   //   }
   // }, [user]);
 
-  // useEffect(() => {
-  //   async function getImageFromStorage() {
-  //     try {
-  //       const signedURL = await Storage.get(post.title); // get key from Storage.list
-  //       console.log("Found Image:", signedURL);
-  //       // @ts-ignore
-  //       setPostImage(signedURL);
-  //     } catch (error) {
-  //       console.log("No image found.");
-  //     }
-  //   }
+  useEffect(() => {
+    async function getImageFromStorage() {
+      try {
+        const signedURL = await Storage.get(post.image); // get key from Storage.list
+        console.log("Found Image:", signedURL);
+        // @ts-ignore
+        setPostImage(signedURL);
+      } catch (error) {
+        console.log("No image found.");
+      }
+    }
 
-  //   getImageFromStorage();
-  // }, []);
+    getImageFromStorage();
+  }, []);
 
   // const addVote = async (voteType: string) => {
   //   if (existingVote && existingVote != voteType) {
@@ -136,7 +136,6 @@ export default function PostPreview({ post }: Props): ReactElement {
         container
         spacing={{ xs: 2, md: 3 }}
         alignContent="center"
-        justifyContent="center"
         direction="row"
         wrap="nowrap"
         style={{ padding: 24, marginTop: 24 }}
@@ -191,7 +190,7 @@ export default function PostPreview({ post }: Props): ReactElement {
                 <Typography variant="body1">{post.owner}</Typography>
               </Grid>
               {post.image && postImage && (
-                <Grid item>
+                <Grid>
                   <Image
                     // src={"https://source.unsplash.com/random/980x540"}
                     src={postImage}
