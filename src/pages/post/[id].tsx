@@ -27,9 +27,9 @@ interface Props {
 }
 
 export default function IndividualPost({ post }: Props): ReactElement {
-  // const [comments, setComments] = useState<Comment[]>(
-  //   post.comments.items as Comment[]
-  // );
+  const [comments, setComments] = useState<Comment[]>(
+    post.comments?.items as Comment[]
+  );
 
   const {
     register,
@@ -51,7 +51,7 @@ export default function IndividualPost({ post }: Props): ReactElement {
       authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
     })) as { data: CreateCommentMutation };
 
-    // setComments([...comments, createNewComment.data.createComment as Comment]);
+    setComments([...comments, createNewComment.data.createComment as Comment]);
   };
 
   console.log("Got post:", post);
@@ -99,12 +99,10 @@ export default function IndividualPost({ post }: Props): ReactElement {
       ))} */}
 
       {/* TODO: Sort comments by createdDate */}
-
-      {/* {comments
-        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-        .map((comment) => (
-          <PostComment key={comment.id} comment={comment} />
-        ))} */}
+      {comments &&
+        comments
+          .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+          .map((comment) => <PostComment key={comment.id} comment={comment} />)}
     </Container>
   );
 }
