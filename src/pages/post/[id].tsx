@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths | any = async () => {
   const SSR = withSSRContext();
 
   const response = (await SSR.API.graphql({ query: listPosts })) as {
@@ -147,5 +147,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: "blocking" };
+  return { paths };
 };

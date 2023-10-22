@@ -9,10 +9,15 @@ import PostPreview from "../components/PostPreview";
 
 export default function Home() {
   const { user } = useUser();
+  // let allPosts: any = await API.graphql<GraphQLQuery<ListPostsQuery>>({
+  //   query: queries.listPosts,
+  // });
+
+  // let posts = allPosts.data?.listPosts?.items;
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const fetchPostsFromApi = async (): Promise<Post[]> => {
+    const fetchPostsFromApi = async () => {
       const allPosts = (await API.graphql({ query: queries.listPosts })) as {
         data: ListPostsQuery;
         errors: any[];

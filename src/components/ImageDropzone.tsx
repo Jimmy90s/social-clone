@@ -3,8 +3,8 @@ import { useDropzone } from "react-dropzone";
 import { Grid, Typography } from "@mui/material";
 
 interface Props {
-  file: File;
-  setFile: React.Dispatch<React.SetStateAction<File>>;
+  file: File | any;
+  setFile: React.Dispatch<React.SetStateAction<File>> | any;
 }
 
 export default function ImageDropzone({ file, setFile }: Props) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { createStyles, makeStyles } from "@mui/styles";
+// import { createStyles, makeStyles } from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -13,23 +13,23 @@ import { Auth } from "aws-amplify";
 import AddIcon from "@mui/icons-material/Add";
 import theme from "../theme";
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      marginBottom: 32,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
-);
+// const useStyles = makeStyles(() =>
+//   createStyles({
+//     root: {
+//       flexGrow: 1,
+//       marginBottom: 32,
+//     },
+//     menuButton: {
+//       marginRight: theme.spacing(2),
+//     },
+//     title: {
+//       flexGrow: 1,
+//     },
+//   })
+// );
 
 export default function Header() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const router = useRouter();
   const { user } = useUser();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -48,19 +48,19 @@ export default function Header() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className="">
       <AppBar position="static" color="inherit">
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
+            className=""
             color="inherit"
             aria-label="menu"
             onClick={() => router.push(`/`)}
           >
             <AppleIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className="">
             Social Media Clone
           </Typography>
           {user && (
